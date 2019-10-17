@@ -10,7 +10,7 @@ import seaborn as sns
 
 class Dataset():
 
-    def __init__(self,moons=False,fname=r'/Users/edvardhulten/Downloads/ntnu.jpg'):
+    def __init__(self,moons=False,fname=r'/Users/edvardhulten/real_nvp_2d/ntnu.jpg'):
         self.moons = moons
         if self.moons is False:
             self.img = plt.imread(fname)/255
