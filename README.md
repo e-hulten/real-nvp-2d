@@ -1,7 +1,7 @@
 # Real NVP 
 Basic implementation of the Real NVP paper by Dinh et.al. (https://arxiv.org/abs/1605.08803). 
 
-Currently the model only supports 2D inputs. 
+The model currently only supports 2D inputs. 
 
 Change the relevant parameters in `train.py` and run!
 E.g.,
