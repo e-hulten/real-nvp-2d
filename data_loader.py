@@ -14,6 +14,9 @@ class Dataset():
         self.moons = moons
         if self.moons is False:
             self.img = plt.imread(fname)/255
+            # reduce the number of pixels by a factor 4
+            step_length = 4
+            self.img = self.img[0:-1:step_length,0:-1:step_length]
             # binarise image
             self.img = self.img.sum(axis=2)
             self.img[self.img < 2] = 0 # colour

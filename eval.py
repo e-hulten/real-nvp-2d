@@ -10,15 +10,16 @@ from data_loader import Dataset
 
 # ------------ parameters ------------
 moons = False
+n_c_layers = 32
 path = r'/Users/edvardhulten/real_nvp_2d/' # change to your own path (unless your name is Edvard Hultén too)
 # ------------------------------------
 
 if not os.path.exists('evals'):
     os.makedirs('evals')
 
-model = RealNVP(n_c_layers=12)
-
-model.load_state_dict(torch.load((path+r'/model.pt')))
+model = RealNVP(n_c_layers)
+checkpoint = torch.load(path + 'model.pt')
+model.load_state_dict(checkpoint['model_state_dict'])
 
 data = Dataset(moons)
 x = data.generate_data()
@@ -36,10 +37,12 @@ plt.savefig('evals/'+'data_to_noise.png')
 
 
 # sample true isotropic Gaussian samples
-z = np.random.multivariate_normal(np.zeros(2), np.eye(2), 8000).astype(np.float32)
+z = np.random.multivariate_normal(np.zeros(2), np.eye(2), 10000).astype(np.float32)
 fig = plt.figure(figsize=[5,5])
 ax = fig.add_subplot(111)
-sns.scatterplot(z[:,0], z[:,1],s=20,alpha=0.5,color='darkblue')
+sns.scatterplot(z[:,0], z[:,1],s=20,alpha=0.5,color='darkblue',ax=ax)
+ax.set_xlim(-2.5,2.5)
+ax.set_ylim(-2.5,2.5)
 ax.set_aspect(1)
 
 # generate data from noise
@@ -55,17 +58,18 @@ plt.savefig('evals/'+'noise_to_data.png')
 
 # generate nice density plot
 blues = cm.get_cmap('Blues', 512)
-nbins=300
+nbins = 300
 k = kde.gaussian_kde([x[:,0], x[:,1]])
 xi, yi = np.mgrid[x[:,0].min()-1:x[:,0].max()+1:nbins*1j, x[:,1].min()-1:x[:,1].max()+1:nbins*1j]
 zi = k(np.vstack([xi.flatten(), yi.flatten()]))
  
 fig = plt.figure(figsize=[5,5])
 ax = fig.add_subplot(111)
+ax.set_xlim(-2.5,2.5)
+ax.set_ylim(-2.5,2.5)
 ax.set_facecolor(blues(1))
 plt.pcolormesh(xi, yi, zi.reshape(xi.shape),cmap='Blues')
 
-ax.set_xlim(-3,3)
-ax.set_ylim(-3,3)
+
 ax.set_aspect(1)
 plt.savefig('evals/'+'ntnu_logo_density.png')
