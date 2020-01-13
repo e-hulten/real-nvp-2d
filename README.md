@@ -1,5 +1,5 @@
 # Real NVP 
-Basic implementation of the Real NVP paper by Dinh et.al. (https://arxiv.org/abs/1605.08803). The model currently only supports 2D densities.  
+Basic implementation of the Real NVP paper by Dinh et al. (https://arxiv.org/abs/1605.08803). This implementation currently only supports 2D densities.  
 
 Change the relevant parameters in `train.py` and run. E.g.,
 ```
