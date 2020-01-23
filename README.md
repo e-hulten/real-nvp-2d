@@ -1,5 +1,9 @@
 # Real NVP 
-PyTorch implementation of the Real NVP paper by Dinh et al. [1]. This is an implementation of Real NVP for *density estimation*, rather than generative modelling. The model supports sample generation (backward pass through the flow) at the same computational cost as the one of density evaluation, but the code is not (yet) adapted for dealing with images. However, visualising the inverse and forward pass of two-dimensional densities is feasible, and I have recreated Figure 1 from [1] as a gif below:
+PyTorch implementation of the Real NVP paper by Dinh et al. (1). This is an implementation of Real NVP for *density estimation*, rather than generative modelling. The model supports sample generation (backward pass through the flow) at the same computational cost as the one of density evaluation, but the code is not (yet) adapted for dealing with images. However, visualising the inverse and forward pass of two-dimensional densities is feasible, and I have recreated Figure 1 from (1) as a gif below:
+
+<p align="center">
+  <img src ="https://github.com/e-hulten/real-nvp-2d/blob/master/gifs/two_moons.gif">
+</p>
 
 All the interesting functionality is found in `model.py`.
 
@@ -21,5 +25,9 @@ duration = 0.1
 ```
 should yield good results on the two moons dataset in a very reasonable amount of time.
 
+I have also added the batch norm layer presented in Appendix B of (2) by Papamakarios et al.
 
-[1]: https://arxiv.org/abs/1605.08803
+
+(1): https://arxiv.org/abs/1605.08803
+
+(2): https://arxiv.org/abs/1705.07057
