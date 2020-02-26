@@ -1,3 +1,7 @@
 results
 __pycache__
 eval.py
+model.pt
+gif.py
+models
+data
